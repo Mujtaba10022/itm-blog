@@ -1,6 +1,7 @@
 const express = require('express');
 const isEmailExists = require('../util/validations');
 const authController = require('../controllers/auth');
+const postController = require('../controllers/posts');
 const { check, validationResult, body } = require('express-validator');
 
 const router = express.Router();
@@ -14,6 +15,12 @@ router.post('/signup', authController.signup);
 
 router.post('/forgot-password', authController.forgotPassword);
 router.post('/reset-password', authController.resetPassword);
+
+// Add a post 
+router.post('/users/:userId/posts', postController.addPost);
+
+// Delete a post by a user with a particular post id
+router.delete('/users/:userId/posts/:postId', postController.deletePost);
 
 
 module.exports = router;
