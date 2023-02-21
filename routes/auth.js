@@ -23,5 +23,8 @@ router.post('/users/:userId/posts', postController.addPost);
 // Delete a post by a user with a particular post id
 router.delete('/users/:userId/posts/:postId', postController.deletePost);
 
+router.patch('/users/:userId/posts/:postId', postController.updatePost);
+router.get('/users/:userId/posts', postController.readPost);
+router.get('/users/:userId/posts/:postId', postController.readByIdPost);
 
 module.exports = router;
