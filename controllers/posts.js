@@ -1,7 +1,8 @@
-const Post = require('../models/Posts')
+const Post = require('../models/Post')
 
 exports.addPost = async function(req, res, next) {
     try {
+
       const { post_id, title, description, userId } = req.body;
     
       const newPost = new Post({
@@ -12,10 +13,12 @@ exports.addPost = async function(req, res, next) {
       });
   
       const savedPost = await newPost.save();
-      
-  
+        
       return res.status(201).json(savedPost);
-    } catch (err) {
+
+    } 
+    catch (err) {
+
         return res.status(400).json({
             success: false,
             error: err
@@ -45,3 +48,4 @@ exports.deletePost = async function(req, res, next) {
 
     }
 };
+

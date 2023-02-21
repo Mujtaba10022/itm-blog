@@ -16,6 +16,7 @@ router.post('/signup', authController.signup);
 router.post('/forgot-password', authController.forgotPassword);
 router.post('/reset-password', authController.resetPassword);
 
+
 // Add a post 
 router.post('/users/:userId/posts', postController.addPost);
 
