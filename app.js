@@ -55,7 +55,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
   session({
@@ -70,10 +71,20 @@ app.use('/api/v1',authRoutes);
 
 
 mongoose
-.connect(MONGODB_URI)
+.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
 .then(result => {
-    app.listen(config.SERVER_PORT);
+    console.log("database connected");
+    // app.listen(config.SERVER_PORT);
+    app.listen(config.SERVER_PORT, () => {
+      console.log(`server running successfully on port`);
+    });
+    
+    
   })
   .catch(err => {
     console.log(err);
   });
+
