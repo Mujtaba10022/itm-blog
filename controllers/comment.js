@@ -149,6 +149,14 @@ module.exports = {
   },
 
   updateComment: function (req, res) {
+
+    if(!req.body.comment){
+      return res.status(400).send({
+        success: false,
+        error: "text is required",
+      });
+    }
+
     const newComment = req.body.comment;
 
     const userId = req.params.userId;
@@ -210,6 +218,7 @@ module.exports = {
   },
 
   showComments: async function (req, res) {
+
     const userId = req.params.userId;
 
     const postId = req.params.postId;
