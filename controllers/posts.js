@@ -3,10 +3,9 @@ const Post = require('../models/Post')
 exports.addPost = async function(req, res, next) {
     try {
 
-      const { post_id, title, description, userId } = req.body;
-    
-      const newPost = new Post({
-        post_id,
+      const { title, description } = req.body;
+      const  userId  = req.params.userId;
+      const newPost = await new Post({
         title,
         description,
         userId
