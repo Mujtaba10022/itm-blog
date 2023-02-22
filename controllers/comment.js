@@ -2,8 +2,6 @@ const Comment = require("../models/Comments");
 const Posts = require("../models/Post");
 
 module.exports = {
-  create: function (req, res) {
-    // find out which post you are commenting
 
     create: async function (req, res){
     
@@ -30,17 +28,6 @@ module.exports = {
       })
       
       },
-
-
-      // delete Controller
-      delete: function(req,res){
-
-        const comment_id = req.params.comment_id;
-        console.log(comment_id);
-        res.send("good");
-      }
-    });
-  },
 
   deleteComment: function (req, res) {
     const commentId = req.body.commentId;
