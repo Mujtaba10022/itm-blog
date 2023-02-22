@@ -8,7 +8,6 @@ module.exports = {
     });
     //     // save post
 
-<<<<<<< HEAD
     create: async function (req, res) {
      console.log(req.body);
         const blogPost = new Posts({
@@ -21,22 +20,3 @@ module.exports = {
     }
       
 }
-=======
-    blogPost.save(function (err, blogPost) {
-      if (err) {
-        return res.status(400).json({
-          success: false,
-          error: err,
-        });
-      } else {
-        return res.status(201).json({
-          success: true,
-          data: {
-            blogPost: blogPost,
-          },
-        });
-      }
-    });
-  },
-};
->>>>>>> 3c7bb51d34f183c395e75de998952a79ac63fee3
