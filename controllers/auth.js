@@ -43,7 +43,7 @@ exports.signup = async (req, res, next) => {
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
-    console.log(name);
+
     const encryptedPassword = await bcryptjs.hash(password, 12);
 
     let isExist = await User.findOne({email});

@@ -1,6 +1,6 @@
 module.exports.emailSecrets = {
-    USER: "672cb547cfff50",
-    PASS: "ce27afaee85286"
+    USER: "b79c961ec58ea2",
+    PASS: "342534f3bb2472"
 }
 
 module.exports.config = {

@@ -1,7 +1,6 @@
 const express = require('express');
 const isEmailExists = require('../util/validations');
 const authController = require('../controllers/auth');
-const postController = require('../controllers/posts');
 const { check, validationResult, body } = require('express-validator');
 
 const router = express.Router();
