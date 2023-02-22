@@ -2,7 +2,16 @@ const express = require('express');
 const commentController = require('../controllers/comment');
 const router = express.Router();
 
-router.post('/post/:id/comment', commentController.create);
-router.delete('/post/:id/:comment_id/delete' , commentController.delete);
+router.post('/user/:userId/:postId/comment', commentController.create);
+
+// router.post('/user/:userId/:postId/comment/:commentId/delete', commentController.deleteComment);
+
+// router.post('/user/:userId/:postId/comment/:commentId/update', commentController.updateComment);
+
+router.get('/user/:userId/:postId/comment/show', commentController.showComments);
+
+router.delete('/:user_id/:post_id/:comment_id/delete', commentController.deleteComment);
+
+router.put('/:user_id/:post_id/:comment_id/update', commentController.updateComment);
 
 module.exports = router;

@@ -74,7 +74,7 @@ app.use('/api/v1',postRoutes);
 
 
 mongoose
-.connect(MONGODB_URI)
+.connect(MONGODB_URI, { useFindAndModify: false })
 .then(result => {
     app.listen(config.SERVER_PORT);
   })
