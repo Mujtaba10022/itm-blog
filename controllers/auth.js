@@ -73,10 +73,8 @@ exports.signup = async (req, res, next) => {
                 })
             } else {
 
-
-
                 sendEmail(
-                    'ghulam.mujtaba_systems@gmail.com',
+                    'naveed.zafar.10004@gmail.com',
                     email,
                     'Welcome',
                     'Successfully Created');
@@ -163,7 +161,7 @@ exports.forgotPassword = async (req, res, next) => {
                     let content = await ejs.renderFile(__dirname + '/../views/emails/reset-password.ejs', { token: user.resetPasswordKey }, { async: true });
 
                     sendEmail(
-                        'ghulam.mujtaba_systems@gmail.com',
+                        'naveed.zafar.10004@gmail.com',
                         email,
                         'Reset password link',
                         content);
