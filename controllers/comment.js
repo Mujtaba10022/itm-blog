@@ -96,58 +96,6 @@ module.exports = {
     });
   },
 
-  // deleteComment: function (req, res) {
-  //   const userId = req.params.userId;
-
-  //   const postId = req.params.postId;
-
-  //   const commentId = req.params.commentId;
-
-  //   User.findById(userId, async function (err, user) {
-  //     if (err) {
-  //       return res.status(400).json({
-  //         success: false,
-  //         error: err,
-  //       });
-  //     } else {
-  //       const blogPostId = user.posts.find((element) => element == postId);
-
-  //       if (blogPostId == null) {
-  //         return res.status(400).json({
-  //           success: false,
-  //           error: err,
-  //         });
-  //       } else {
-  //         const blogPost = await Posts.findById(blogPostId);
-
-  //         if (blogPost == null) {
-  //           return res.status(400).json({
-  //             success: false,
-  //             error: err,
-  //           });
-  //         } else {
-  //           const blogCommentId = blogPost.comments.find(
-  //             (element) => element == commentId
-  //           );
-
-  //           Comment.findByIdAndDelete(blogCommentId, function (err) {
-  //             if (err) {
-  //               return res.status(400).json({
-  //                 success: false,
-  //                 error: err,
-  //               });
-  //             } else {
-  //               return res.status(202).json({
-  //                 success: true,
-  //                 message: "comment deleted",
-  //               });
-  //             }
-  //           });
-  //         }
-  //       }
-  //     }
-  //   });
-  // },
   deleteComment: async function (req, res) {
 
     const commentId = req.params.comment_id;
@@ -207,75 +155,6 @@ module.exports = {
 
 
 },
-  // updateComment: function (req, res) {
-
-  //   if(!req.body.comment){
-  //     return res.status(400).send({
-  //       success: false,
-  //       error: "text is required",
-  //     });
-  //   }
-
-  //   const newComment = req.body.comment;
-
-  //   const userId = req.params.userId;
-
-  //   const postId = req.params.postId;
-
-  //   const commentId = req.params.commentId;
-
-  //   User.findById(userId, async function (err, user) {
-  //     if (err) {
-  //       return res.status(400).json({
-  //         success: false,
-  //         error: err,
-  //       });
-  //     } else {
-  //       const blogPostId = user.posts.find((element) => element == postId);
-
-  //       if (blogPostId == null) {
-  //         return res.status(400).json({
-  //           success: false,
-  //           error: err,
-  //         });
-  //       } else {
-  //         const blogPost = await Posts.findById(blogPostId);
-
-  //         if (blogPost == null) {
-  //           return res.status(400).json({
-  //             success: false,
-  //             error: err,
-  //           });
-  //         } else {
-  //           const blogCommentId = blogPost.comments.find(
-  //             (element) => element == commentId
-  //           );
-
-  //           Comment.findByIdAndUpdate(
-  //             blogCommentId,
-  //             { text: newComment },
-  //             function (err, comment) {
-  //               if (err) {
-  //                 return res.status(400).json({
-  //                   success: false,
-  //                   error: err,
-  //                 });
-  //               } else {
-  //                 return res.status(202).json({
-  //                   success: true,
-  //                   data: {
-  //                     updatedComment: comment,
-  //                   },
-  //                 });
-  //               }
-  //             }
-  //           );
-  //         }
-  //       }
-  //     }
-  //   });
-  // },
-
   updateComment: async function (req, res) {
     const commentId = req.params.comment_id;
     const postId = req.params.post_id;

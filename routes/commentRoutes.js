@@ -4,10 +4,6 @@ const router = express.Router();
 
 router.post('/user/:userId/:postId/comment', commentController.create);
 
-// router.post('/user/:userId/:postId/comment/:commentId/delete', commentController.deleteComment);
-
-// router.post('/user/:userId/:postId/comment/:commentId/update', commentController.updateComment);
-
 router.get('/user/:userId/:postId/comment/show', commentController.showComments);
 
 router.delete('/:user_id/:post_id/:comment_id/delete', commentController.deleteComment);
