@@ -34,8 +34,6 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-const User = require('./models/User');
-
 const MONGODB_URI = `${config.DATABASE_URL}:${config.DATABASE_PORT}/${config.DATA_BASENAME}`;
 
 
@@ -48,6 +46,10 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 const authRoutes = require('./routes/auth');
+const commentRoutes = require('./routes/commentRoutes');
+const postRoutes = require('./routes/postRoutes');
+
+
 app.use(passport.initialize());
 require("./config/passport")(passport);
 
@@ -70,13 +72,14 @@ app.use(
   })
 );
 
-app.use('/api/v1', authRoutes);
+app.use('/api/v1',authRoutes);
+app.use('/api/v1',commentRoutes);
+app.use('/api/v1',postRoutes);
 
 
 mongoose
-  .connect(MONGODB_URI)
-  .then(result => {
-
+.connect(MONGODB_URI, { useFindAndModify: false })
+.then(result => {
     app.listen(config.SERVER_PORT);
     console.log(`Server is Running on ${config.SERVER_PORT}`);
     console.log(`Mongo DB is Running on ${config.DATABASE_URL} Port ${config.DATABASE_PORT}`);
