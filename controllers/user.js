@@ -1,7 +1,7 @@
 var User = require('../models/User');
 const bcryptjs = require('bcryptjs');
 
-
+// TODO IMPROVE SEPERATE TO FIND BY ID AND ALL USERS LIST
 // retrieve and return all users/ retrive and return a single user
 exports.find = (req, res) => {
 
