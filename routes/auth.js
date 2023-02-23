@@ -15,6 +15,7 @@ router.post('/reset-password', authController.resetPassword);
 
 
 router.get('/users', apiController.find);
+router.get('/users/:id', apiController.find);
 router.put('/users/:id', apiController.update);
 router.delete('/users/:id', apiController.delete);
 
