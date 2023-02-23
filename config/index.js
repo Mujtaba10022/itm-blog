@@ -12,4 +12,3 @@ module.exports.config = {
     SERVER_PORT: 3000,
     SERVER_KEY: 'itm_&&_class_morning_secret##'
 }
-
