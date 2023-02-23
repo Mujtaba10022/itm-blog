@@ -1,13 +1,17 @@
 const path = require('path');
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 var passport = require("passport");
-var {config} = require('./config/index');
-const multer  = require('multer')
+var { config } = require('./config/index');
+const multer = require('multer');
+const app = express();
+
+//log requests
+app.use(morgan('tiny'));
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -32,7 +36,7 @@ const fileFilter = (req, file, cb) => {
 
 const MONGODB_URI = `${config.DATABASE_URL}:${config.DATABASE_PORT}/${config.DATA_BASENAME}`;
 
-const app = express();
+
 const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: 'sessions'
@@ -51,7 +55,7 @@ require("./config/passport")(passport);
 
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).single('image')
-  );
+);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -77,6 +81,10 @@ mongoose
 .connect(MONGODB_URI, { useFindAndModify: false })
 .then(result => {
     app.listen(config.SERVER_PORT);
+    console.log(`Server is Running on ${config.SERVER_PORT}`);
+    console.log(`Mongo DB is Running on ${config.DATABASE_URL} Port ${config.DATABASE_PORT}`);
+    console.log(`Database Name is  ${config.DATA_BASENAME} `);
+
   })
   .catch(err => {
     console.log(err);
