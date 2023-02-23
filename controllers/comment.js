@@ -28,22 +28,7 @@ module.exports = {
     });
   },
 
-  deleteComment: function (req, res) {
-    const commentId = req.body.commentId;
-    Comment.findByIdAndDelete(commentId, function (err) {
-      if (err) {
-        return res.status(400).json({
-          success: false,
-          error: err,
-        });
-      } else {
-        return res.status(202).json({
-          success: true,
-          message: "comment deleted",
-        });
-      }
-    });
-  },
+  
 
 
   updateComment: async function (req, res) {
@@ -99,21 +84,6 @@ module.exports = {
       }
     );
   },
-  showComments: async function (req, res) {
-    try {
-      const allComments = await Comment.find({});
-      return res.status(202).json({
-        success: true,
-        data: {
-          allComments: allComments,
-        },
-      });
-    } catch (err) {
-      return res.status(400).json({
-        success: false,
-        error: err,
-      });
-    }
-  },
+ 
 
 }
