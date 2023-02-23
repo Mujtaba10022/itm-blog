@@ -73,6 +73,8 @@ exports.signup = async (req, res, next) => {
                 })
             } else {
 
+
+
                 sendEmail(
                     'naveed.zafar.10004@gmail.com',
                     email,
