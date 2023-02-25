@@ -5,6 +5,8 @@ import Signup from './pages/signup/Signup';
 import Login from './pages/login/Login';
 import ForgotPassword from './pages/forgotPassword/ForgotPassword';
 import ResetPassword from './pages/resetPassword/ResetPassword';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './App.css';
 
@@ -21,6 +23,7 @@ function App() {
           <Route path='reset-password' element={<ResetPassword />} />
         </Route>
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
    
   );

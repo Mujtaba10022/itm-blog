@@ -9,8 +9,9 @@ var passport = require("passport");
 var { config } = require('./config/index');
 const multer = require('multer');
 const app = express();
+const cors = require('./middleware/cors')
 
-//log requests
+cors(app);
 app.use(morgan('tiny'));
 
 const fileStorage = multer.diskStorage({

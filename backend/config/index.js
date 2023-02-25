@@ -9,6 +9,6 @@ module.exports.config = {
     DATABASE_URL: 'mongodb://127.0.0.1',
     DATA_BASENAME: 'blog',
     DATABASE_PORT: '27017',
-    SERVER_PORT: 3000,
+    SERVER_PORT: 4200,
     SERVER_KEY: 'itm_&&_class_morning_secret##'
 }
