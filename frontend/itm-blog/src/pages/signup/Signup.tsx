@@ -1,20 +1,48 @@
-import React,  {useState, useEffect, SyntheticEvent, BaseSyntheticEvent} from 'react';
+import React,  {useState, useReducer, useEffect, SyntheticEvent, BaseSyntheticEvent} from 'react';
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-
+// import Button from "../../components/ui/button";
+import styles  from "./Signup.module.css"
 import './signup.css';
+
+const initState = {
+  signupData: {
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  },
+  signupValidation: {
+    name: false,
+    email: false,
+    password: false
+  }
+};
+
+const reducer = (state: any, action: any) => {
+  switch (action.type) {
+    case "SIGNUP_DATA_SET":
+      return {signupData: { ...state }};
+    case "SIGNUP_VALIDATION_SET":
+        return { signupValidation: { ...state }};
+    default :
+     return state;
+  }
+}
 
 function Signup() {
 
   const navigate = useNavigate();
 
-  const [signUpData, setSignupState] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
+  const [signUpData, dispatch] = useReducer(reducer, initState);
+
+  // const [signUpData, setSignupState] = useState({
+  //   name: '',
+  //   email: '',
+  //   password: '',
+  //   confirmPassword: '',
+  // });
 
   useEffect(() => {
       console.log('MOUNTING');
@@ -27,12 +55,10 @@ function Signup() {
 
   const handleChange = async (event: BaseSyntheticEvent) => {
     console.log('EVENT ---', event);
-   setSignupState(
-      {
-        ...signUpData,
-        [event.target.name]: event.target.value
-      }
-    );
+    dispatch(
+      { 
+        type: "SIGNUP_DATA_SET",  [event.target.name]: event.target.value
+     })
   }
 
   const handleSubmit = (event: any) => {
@@ -103,8 +129,8 @@ function Signup() {
                 </div>
 
                 <div className="card-footer">
-                  <button type="submit" className="btn btn-primary">Signup</button>
-                  <Link to='/login'>Sign In</Link>
+                  <button className={styles.btn}>Signup</button>
+                  <Link className='anchor' to='/login'>Sign In</Link>
                 </div>
               </form>
             </div>

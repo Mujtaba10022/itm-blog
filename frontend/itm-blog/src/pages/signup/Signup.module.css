@@ -1,0 +1,13 @@
+.btn {
+    width: fit-content;
+    height: 50px;
+    padding: 5px;
+    color: white;
+    background-color: brown;
+    border: 1px solid white;
+}
+
+
+.anchor {
+    color: yellow;
+}

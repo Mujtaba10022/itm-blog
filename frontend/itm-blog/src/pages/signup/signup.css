@@ -2,3 +2,7 @@
 .form-section {
     margin-top: 50px;
 }
+
+.anchor {
+    color: yellow !important;
+}
