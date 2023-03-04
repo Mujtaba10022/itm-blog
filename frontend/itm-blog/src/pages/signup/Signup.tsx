@@ -7,27 +7,29 @@ import styles  from "./Signup.module.css"
 import './signup.css';
 
 const initState = {
-  signupData: {
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  },
-  signupValidation: {
-    name: false,
-    email: false,
-    password: false
-  }
+  name: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+  nameValid: false,
+  emailValid: false,
+  passwordValid: false
 };
 
 const reducer = (state: any, action: any) => {
   switch (action.type) {
     case "SIGNUP_DATA_SET":
-      return {signupData: { ...state }};
+      return {
+         ...state, 
+         ...action.payload
+      };
     case "SIGNUP_VALIDATION_SET":
-        return { signupValidation: { ...state }};
+        return {
+          ...state, 
+          ...action.payload
+       };
     default :
-     return state;
+      return state;
   }
 }
 
@@ -45,19 +47,28 @@ function Signup() {
   // });
 
   useEffect(() => {
-      console.log('MOUNTING');
+      console.log('EMAIL CHANGING');
 
-      return () => {
-        console.log('UN MOUNT ---');
-      }
-  }, []);
+        let passwordValid = (signUpData.password == signUpData.confirmPassword)? true : false;
+        dispatch(
+          { 
+            type: "SIGNUP_VALIDATION_SET", 
+            payload: {
+              emailValid: signUpData.email.includes('@gmail.com'),
+              passwordValid: passwordValid
+            }
+         });
+
+  }, [signUpData.email, signUpData.password, signUpData.confirmPassword]);
 
 
   const handleChange = async (event: BaseSyntheticEvent) => {
-    console.log('EVENT ---', event);
     dispatch(
       { 
-        type: "SIGNUP_DATA_SET",  [event.target.name]: event.target.value
+        type: "SIGNUP_DATA_SET", 
+        payload: {
+          [event.target.name]: event.target.value
+        }
      })
   }
 
@@ -65,13 +76,13 @@ function Signup() {
     event.preventDefault();
 
     let signupData  = signUpData;
-
+    console.log(signupData);
     const data = new FormData();
     data.append("name", signupData.name);
     data.append("email", signupData.email);
     data.append("password", signupData.password);
 
-     fetch('http://localhost:4200/api/v1/signup', {
+     fetch('http://localhost:4200/api/v1/signupaa', {
       method: "post",
       body: data,
     })
@@ -109,14 +120,22 @@ function Signup() {
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
                     <input name="name" onChange={handleChange} type="name" className="form-control" id="name" placeholder="Enter Name" />
+                 
+                  
                   </div>
                   <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Email address</label>
                     <input name="email" onChange={handleChange} type="email" className="form-control" id="exampleInputEmail1" placeholder="Enter email" />
+                    {signUpData.emailValid == false && signUpData.email.length > 0 &&
+                    <label className='red'>Email is invalid</label>
+                  }
                   </div>
                   <div className="form-group">
                     <label htmlFor="exampleInputPassword1">Password</label>
                     <input name="password" onChange={handleChange} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+                    {signUpData.passwordValid == false && signUpData.password.length > 0 &&
+                    <label className='red'>Pasword missmatch</label>
+                  }
                   </div>
                   <div className="form-group">
                     <label htmlFor="confirmpassword">Confirm password</label>

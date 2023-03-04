@@ -11,7 +11,7 @@ exports.login = async (req, res, next) => {
     let { email, password} = req.body;
 
     User.findOne({email}, async function(err, user) {
-        if(err) {
+        if(err || user == null) {
             return res.status(400).json({
                 success: false,
                 error: err
